@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+}
+
+html, body{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+}
+
+.calculator{
+    border-radius: 10px;
+    padding: .8rem;
+    width: 500px;
+    height: 500px;
+    background-color: rgb(92, 0, 61);
+    box-shadow: 5px 5px 8px 2px rgba(0,0,0,0.4);
+}
+
+.calculator p{
+    color: white;
+    font-size: xx-large;
+    height: 90px;
+    background-color: rgb(19, 5, 6);
+}
+
+.btn-container{
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(100%-90px);
+}
+
+.calculator .btn-container button{
+    font-size: xx-large;
+    width: 25%;
+    height: 80px;
+    color:  rgb(80, 46, 46);
+    background-color: rgb(255, 255, 255);
+}
+
+.calculator .btn-container button#eq{
+    width: 50%;
+}
