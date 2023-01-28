@@ -1,8 +1,12 @@
 .card{
     width: 18rem;
+    display: inline-block;
+}
+.name-product{
+    font-size: larger;
 }
 #divsOfProducts{
     background-color: aqua;
-    width: 100px;
-    height:100px;
+    width: calc(18rem*3.5);
+    height:fit-content;
 }
