@@ -10,3 +10,18 @@
     width: calc(18rem*3.5);
     height:fit-content;
 }
+.container_menu{
+    display: flex ;
+    padding: 10px;
+    size: 70px;
+
+}
+nav a{
+    color:aqua;
+    padding: 0 20px;
+    text-decoration: none;
+    text-align: center;
+ }
+nav a:hover{
+    color:chocolate;
+}
