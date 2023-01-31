@@ -7,6 +7,17 @@ db.once('open', function () {
     console.log('connection open');
 });
 
+const branches = new mongoose.Schema({
+    city: String,
+    street: String,
+    phone: Number,
+    opening_hours: String,
+    email: String
+});
+
+const branch = mongoose.model('branch', branches);
+const Bnei_Brak = new branch({ city: 'bnei brak', street: 'Ezra 12', phone: '035797654', opening_hours: '10:00-21:00', email: 'shopbb@shop.com' });
+
 
 
 
