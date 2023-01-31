@@ -17,6 +17,23 @@ const branches = new mongoose.Schema({
 
 const branch = mongoose.model('branch', branches);
 const Bnei_Brak = new branch({ city: 'bnei brak', street: 'Ezra 12', phone: '035797654', opening_hours: '10:00-21:00', email: 'shopbb@shop.com' });
+const jerusalem = new branch({ city: 'jerusalem', street: 'Neria 35', phone: '025797653', opening_hours: '10:00-21:00', email: 'shopjr@shop.com' });
+
+
+const jewelry = new mongoose.Schema({
+    name: String,
+    cost: Number,
+    img: String,
+    category: String,
+    color: String
+});
+
+const jewel = mongoose.model('jewel', jewelry);
+const ring1 = new jewel({ name: 'star ring', cost: '190', img: 'https://pandorail.b-cdn.net/wp-content/uploads/2022/08/198492C01_1661157706469-270x270.png', category: 'rings', color: 'silver' });
+const ring2 = new jewel({ name: 'Red heart ring', cost: '150', img: 'https://pandorail.b-cdn.net/wp-content/uploads/2022/08/199267C01_1661238296938-270x270.png', category: 'rings', color: 'red' });
+const bracelet1 = new jewel({ name: 'Link bracelet', cost: '300', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/599588C00_1660830045367-390x418.png.webp', category: 'bracelet', color: 'silver' });
+const bracelet2 = new jewel({ name: 'fabric bracelet', cost: '140', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/590749CPE_1661070689604-390x418.png.webp', category: 'bracelet', color: 'purple' });
+
 
 
 
