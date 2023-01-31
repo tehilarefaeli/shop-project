@@ -16,7 +16,7 @@ const branches = new mongoose.Schema({
 });
 
 const branch = mongoose.model('branch', branches);
-const Bnei_Brak = new branch({ city: 'bnei berak', street: 'Ezra 12', phone: '035797654', opening_hours: '10:00-21:00', email: 'shopbb@shop.com' });
+const Bnei_Brak = new branch({ city: 'bnei brak', street: 'Ezra 12', phone: '035797654', opening_hours: '10:00-21:00', email: 'shopbb@shop.com' });
 
 
 
