@@ -1,33 +1,34 @@
 
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/shop', { useNewUrlPreser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
-db.on('eroro', console.error.bind(console, 'connection error: '));
-db.once('open', function () {
-    console.log('connection open');
-});
+// const mongoose = require('mongoose');
+// mongoose.connect('mongodb://127.0.0.1:27017/shop', { useNewUrlPreser: true, useUnifiedTopology: true });
+// const db = mongoose.connection;
+// db.on('eroro', console.error.bind(console, 'connection error: '));
+// db.once('open', function () {
+//     console.log('connection open');
+// });
 
-const branches = new mongoose.Schema({
-    city: String,
-    street: String,
-    phone: Number,
-    opening_hours: String,
-    email: String
-});
+// const branches = new mongoose.Schema({
+//     city: String,
+//     street: String,
+//     phone: Number,
+//     opening_hours: String,
+//     email: String
+// });
 
-const branch = mongoose.model('branch', branches);
-const Bnei_Brak = new branch({ city: 'bnei brak', street: 'Ezra 12', phone: '035797654', opening_hours: '10:00-21:00', email: 'shopbb@shop.com' });
-const jerusalem = new branch({ city: 'jerusalem', street: 'Neria 35', phone: '025797653', opening_hours: '10:00-21:00', email: 'shopjr@shop.com' });
+// const branch = mongoose.model('branch', branches);
+// const Bnei_Brak = new branch({ city: 'bnei brak', street: 'Ezra 12', phone: '035797654', opening_hours: '10:00-21:00', email: 'shopbb@shop.com' });
+// const jerusalem = new branch({ city: 'jerusalem', street: 'Neria 35', phone: '025797653', opening_hours: '10:00-21:00', email: 'shopjr@shop.com' });
 
 
-const jewelry = new mongoose.Schema({
-    name: String,
-    cost: Number,
-    img: String,
-    category: String,
-    color: String
-});
+// const jewelry = new mongoose.Schema({
+//     name: String,
+//     cost: Number,
+//     img: String,
+//     category: String,
+//     color: String
+// });
 
+<<<<<<< HEAD
 const jewel = mongoose.model('jewel', jewelry);
 
 const ring1 = new jewel({ name: 'star ring', cost: '190', img: 'https://pandorail.b-cdn.net/wp-content/uploads/2022/08/198492C01_1661157706469-270x270.png', category: 'rings', color: 'silver' });
@@ -56,33 +57,153 @@ const necklace2 = new jewel({ name: 'Blue pendant necklace', cost: '425', img: '
 const necklace3 = new jewel({ name: 'Heart necklace', cost: '469', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/590534CZ-390x418.png.webp', category: 'necklace', color: 'silver' });
 const necklace4 = new jewel({ name: 'Circle pendant necklace', cost: '599', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/389483C01-390x418.png.webp', category: 'necklace', color: 'silver' });
 const necklace5 = new jewel({ name: 'Necklace of links and pearls', cost: '820', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/09/362302C01_1663891294083-390x418.png.webp', category: 'necklace', color: 'gold' });
+=======
+// const jewel = mongoose.model('jewel', jewelry);
+// const ring1 = new jewel({ );
+// const ring2 = new jewel();
+// const bracelet1 = new jewel({ name: 'Link bracelet', cost: '300', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/599588C00_1660830045367-390x418.png.webp', category: 'bracelet', color: 'silver' });
+// const bracelet2 = new jewel({ name: 'fabric bracelet', cost: '140', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/590749CPE_1661070689604-390x418.png.webp', category: 'bracelet', color: 'purple' });
+
+const productdata = [
+    {
+        name: 'star ring', cost: '190',
+        img: 'https://pandorail.b-cdn.net/wp-content/uploads/2022/08/198492C01_1661157706469-270x270.png',
+        category: 'rings', color: 'silver'
+    },
+
+    {
+        name: 'Red heart ring', cost: '150',
+        img: 'https://pandorail.b-cdn.net/wp-content/uploads/2022/08/199267C01_1661238296938-270x270.png',
+        category: 'rings', color: 'red'
+    },
+    {
+        name: 'fabric bracelet', cost: '140',
+        img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/590749CPE_1661070689604-390x418.png.webp',
+        category: 'bracelet', color: 'purple'
+    },
+    {
+        name: 'Star earrings', cost: '285',
+        img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/10/262375C01_1666742512800-390x418.png.webp',
+        category: 'earring', color: 'gold'
+    },
+    {
+        name: 'Heart necklace', cost: '469',
+        img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/590534CZ-390x418.png.webp',
+        category: 'necklace', color: 'silver'
+    }
+>>>>>>> a968568d1ee5438d38571ec1bcaf284618246e9a
 
 
+];
+let productdatafilter;
+let inputValues = [];
+let filterproductbt3parameters;
+let checker;
+
+function filering(kind) {
+
+    if (kind === 'all')
+        productdatafilter = productdata;
+    else
+        productdatafilter = productdata.filter(object => object.category === kind);
+    loadProducts()
+}
+function displayInputs() {
+    // Get the div element that will contain the input fields
+    var inputDiv = document.getElementById("input-container");
+
+    // Check if there are any inputs already displayed
+    if (inputDiv.hasChildNodes()) {
+        // If there are, remove them
+        inputDiv.innerHTML = "";
+    } else {
+        // If there aren't, create 3 input elements
+        var productCategory = document.createElement("input");
+        productCategory.type = "text";
+        productCategory.placeholder = "Enter product category";
+
+        var productColor = document.createElement("input");
+        productColor.type = "text";
+        productColor.placeholder = "Enter product color";
+
+        var productPrice = document.createElement("input");
+        productPrice.type = "text";
+        productPrice.placeholder = "Enter product price";
+
+        // Add the input elements to the div
+        inputDiv.appendChild(productCategory);
+        inputDiv.appendChild(productColor);
+        inputDiv.appendChild(productPrice);
+
+        var button = document.createElement("button");
+        button.innerText = "Get Input Values";
+        button.onclick = function () {
+            var inputValues = [
+                productCategory.value,
+                productColor.value,
+                productPrice.value
+            ];
+            console.log('asdfghjk', inputValues)
+            filterproductbt3parameters = productdata.filter(object => {
+                return (
+                    object.category == inputValues[0] &&
+                    object.color == inputValues[1] &&
+                    object.cost == inputValues[2]
+                )
+                // console.log("object",object);
+
+            })
+            productdatafilter=filterproductbt3parameters;
+            loadProducts()
+            console.log('filterproductbt3parameters', filterproductbt3parameters)
+
+        };
+        inputDiv.appendChild(button);
+    }
+}
+
+function displayValues() {
+
+
+    var inputs = document.getElementsByTagName("input");
+    for (var i = 0; i < inputs.length; i++) {
+        if (inputs[i].type == "text") {
+            inputValues.push(inputs[i].value);
+        }
+    }
+    console.log("inputValues", inputValues);
+
+}
 
 
 
 function loadProducts() {
-    for (var i = 0; i < 9; i++) {
+    const data =  productdatafilter || productdata
+    checker = false
+    cleardata = document.getElementById("divsOfProducts");
+    cleardata.innerHTML = '';
+    for (var i = 0; i < data.length; i++) {
         const card = document.createElement("div");
         card.classList.add("card");
         card.style.display = "inline-block"
         const cardImg = document.createElement("img");
         cardImg.classList.add("card-img-top")
-        cardImg.setAttribute("src", "https://randomuser.me/api/portraits/men/52.jpg");
+        cardImg.setAttribute("src", data[i].img);
         card.appendChild(cardImg);
         const cardBody = document.createElement("div");
         cardBody.classList.add("card-body");
         const nameOfProduct = document.createElement("span");
         nameOfProduct.classList.add("name-product");
-        nameOfProduct.innerHTML = "Name";
+        nameOfProduct.innerHTML = data[i].name;
         const cardText = document.createElement("p");
         cardText.classList.add("card-text");
-        cardText.innerHTML = "Some quick example text to build on the card title and make up the bulk of the card's content.";
+        cardText.innerHTML = data[i].category + '   |   ' + data[i].color
+            + '   |   ' + data[i].cost + '   שח';
         cardBody.appendChild(nameOfProduct);
         cardBody.appendChild(cardText);
-        // const shoppingCartICon = document.createElementNS('', 'svg');
-        // shoppingCartICon.classList.add("icon-shopping-cart");
-        // card.appendChild(shoppingCartICon);
+        const cardIcon = document.createElement("i");
+        cardIcon.classList.add("fa-solid", "fa-cart-shopping");
+        card.appendChild(cardIcon);
         card.appendChild(cardBody);
         document.getElementById("divsOfProducts").appendChild(card);
     }
