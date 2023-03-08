@@ -55,3 +55,16 @@ const necklace2 = new jewel({ name: 'Blue pendant necklace', cost: '425', img: '
 const necklace3 = new jewel({ name: 'Heart necklace', cost: '469', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/590534CZ-390x418.png.webp', category: 'necklace', color: 'silver' });
 const necklace4 = new jewel({ name: 'Circle pendant necklace', cost: '599', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/389483C01-390x418.png.webp', category: 'necklace', color: 'silver' });
 const necklace5 = new jewel({ name: 'Necklace of links and pearls', cost: '820', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/09/362302C01_1663891294083-390x418.png.webp', category: 'necklace', color: 'gold' });
+
+
+
+
+function add_branch() {
+    var city = document.getElementById("city");
+    var street = document.getElementById("street");
+    var phone = document.getElementById("phone");
+    var opening_hours = document.getElementById("opening_hours");
+    var email = document.getElementById("email");
+
+    const city = new branch({ city: 'city', street: 'street', phone: 'phone', opening_hours: 'opening_hours', email: 'email' });
+}
