@@ -10,36 +10,54 @@
 
 <body>
 
-    <form>
-        <p>
-            <label for="city">city</label>
-            <input type="text" placeholder="city" id="city" name="city">
-        </p>
 
-        <p>
-            <label for="street">street</label>
-            <input type="text" placeholder="street" id="street" name="street">
-        </p>
+    <p>
+        <label for="city">city</label>
+        <input type="text" placeholder="city" id="city" name="city">
+    </p>
 
-        <p>
-            <label for="phone">phone</label>
-            <input type="text" placeholder="phone" id="phone" name="phone">
-        </p>
+    <p>
+        <label for="street">street</label>
+        <input type="text" placeholder="street" id="street" name="street">
+    </p>
 
-        <p>
-            <label for="opening_hours">opening hours</label>
-            <input type="text" placeholder="opening hours" id="opening_hours" name="opening_hours">
-        </p>
+    <p>
+        <label for="phone">phone</label>
+        <input type="text" placeholder="phone" id="phone" name="phone">
+    </p>
 
-        <p>
-            <label for="email">email</label>
-            <input type="email" placeholder="email" id="email" name="email">
-        </p>
+    <p>
+        <label for="opening_hours">opening hours</label>
+        <input type="text" placeholder="opening hours" id="opening_hours" name="opening_hours">
+    </p>
 
-        <p><button onclick="add_branch()">add</button></p>
+    <p>
+        <label for="email">email</label>
+        <input type="email" placeholder="email" id="email" name="email">
+    </p>
 
-    </form>
+    <p><button onclick="add_branch()">add</button></p>
+
 
 </body>
+
+<script>
+    function add_branch() {
+        var city = document.getElementById("city").value;
+        var street = document.getElementById("street").value;
+        var phone = document.getElementById("phone").value;
+        var opening_hours = document.getElementById("opening_hours").value;
+        var email = document.getElementById("email").value;
+        fetch("/insertbranch", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ city: city, street: street, phone: phone, opening_hours: opening_hours, email: email })
+        }).then(console.log)
+        return false
+    }
+
+</script>
 
 </html>
