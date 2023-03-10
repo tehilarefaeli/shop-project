@@ -143,3 +143,13 @@ function loadProducts() {
     }
 }
 
+function get_branches() {
+    fetch("/branches").then(res => res.json()).then(branches => {
+        let html = ""
+        branches.forEach(branch => {
+            html += "<p> " + branch.city + "</br>" + branch.street + "</br>" + branch.phone + "</br>" + branch.opening_hours + "</br>" + branch.email + "</p>"
+        })
+        document.getElementById("branches").innerHTML = html;
+    });
+}
+get_branches();

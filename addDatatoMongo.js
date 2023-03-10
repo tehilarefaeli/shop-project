@@ -3,11 +3,14 @@ const mongoose = require('mongoose');
 
 const http_server = express()
 http_server.use(express.json())
+http_server.use(express.static(__dirname))
+
 http_server.get('/', (req, res) => {
     res.sendFile(__dirname + '/shop.html')
 })
-http_server.get('/insertbranch.html', (req, res) => {
-    res.sendFile(__dirname + '/insertbranch.html')
+
+http_server.get('/branches', async (req, res) => {
+    res.send(await getbranches());
 })
 
 http_server.post('/insertbranch', (req, res) => {
@@ -16,6 +19,7 @@ http_server.post('/insertbranch', (req, res) => {
 http_server.listen(8080)
 
 mongoose.connect('mongodb://127.0.0.1:27017/shop', { useUnifiedTopology: true });
+mongoose.set({ strictQuery: false })
 const db = mongoose.connection;
 db.on('eroro', console.error.bind(console, 'connection error: '));
 db.once('open', function () {
@@ -25,7 +29,7 @@ db.once('open', function () {
 const branches = new mongoose.Schema({
     city: String,
     street: String,
-    phone: Number,
+    phone: String,
     opening_hours: String,
     email: String
 });
@@ -81,4 +85,6 @@ function add_branch_to_db(data) {
     name.save()
 }
 
-
+async function getbranches() {
+    return await branch.find();
+}
