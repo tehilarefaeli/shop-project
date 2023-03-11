@@ -1,5 +1,25 @@
+const express = require('express');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/shop', { useNewUrlPreser: true, useUnifiedTopology: true });
+
+const http_server = express()
+http_server.use(express.json())
+http_server.use(express.static(__dirname))
+
+http_server.get('/', (req, res) => {
+    res.sendFile(__dirname + '/shop.html')
+})
+
+http_server.get('/branches', async (req, res) => {
+    res.send(await getbranches());
+})
+
+http_server.post('/insertbranch', (req, res) => {
+    add_branch_to_db(req.body)
+})
+http_server.listen(8080)
+
+mongoose.connect('mongodb://127.0.0.1:27017/shop', { useUnifiedTopology: true });
+mongoose.set({ strictQuery: false })
 const db = mongoose.connection;
 db.on('eroro', console.error.bind(console, 'connection error: '));
 db.once('open', function () {
@@ -9,7 +29,7 @@ db.once('open', function () {
 const branches = new mongoose.Schema({
     city: String,
     street: String,
-    phone: Number,
+    phone: String,
     opening_hours: String,
     email: String
 });
@@ -34,7 +54,8 @@ const ring2 = new jewel({ name: 'Red heart ring', cost: '150', img: 'https://pan
 const ring3 = new jewel({ name: 'Classic ring', cost: '419', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/196250CZ_1661070288648-390x418.png.webp', category: 'rings', color: 'silver' });
 const ring4 = new jewel({ name: 'wide ring', cost: '425', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/198676C01-390x418.png.webp', category: 'rings', color: 'silver' });
 const ring5 = new jewel({ name: 'flower ring', cost: '335', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2023/01/190786C01_1673880218870-390x418.png.webp', category: 'rings', color: 'silver' });
-
+ring1.save()
+ring2.save()
 
 const bracelet1 = new jewel({ name: 'Link bracelet', cost: '300', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/599588C00_1660830045367-390x418.png.webp', category: 'bracelet', color: 'silver' });
 const bracelet2 = new jewel({ name: 'fabric bracelet', cost: '140', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/590749CPE_1661070689604-390x418.png.webp', category: 'bracelet', color: 'purple' });
@@ -55,3 +76,15 @@ const necklace2 = new jewel({ name: 'Blue pendant necklace', cost: '425', img: '
 const necklace3 = new jewel({ name: 'Heart necklace', cost: '469', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/590534CZ-390x418.png.webp', category: 'necklace', color: 'silver' });
 const necklace4 = new jewel({ name: 'Circle pendant necklace', cost: '599', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/389483C01-390x418.png.webp', category: 'necklace', color: 'silver' });
 const necklace5 = new jewel({ name: 'Necklace of links and pearls', cost: '820', img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/09/362302C01_1663891294083-390x418.png.webp', category: 'necklace', color: 'gold' });
+
+
+
+
+function add_branch_to_db(data) {
+    const name = new branch({ city: data.city, street: data.street, phone: data.phone, opening_hours: data.opening_hours, email: data.email });
+    name.save()
+}
+
+async function getbranches() {
+    return await branch.find();
+}
