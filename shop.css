@@ -28,6 +28,14 @@ nav a {
     text-align: center;
 
 }
+.admin{
+   
+    padding: 0 355px;
+    text-decoration: none;
+    text-align:left;
+    border-radius: 10% 30% 50% 70%;
+
+}
 .filtering{
     margin: 5px;
 
