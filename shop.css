@@ -28,6 +28,10 @@ nav a {
     text-align: center;
 
 }
+.filtering{
+    margin: 5px;
+
+}
 
 nav a:hover {
     color: chocolate;
