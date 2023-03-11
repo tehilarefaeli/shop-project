@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <p>
+        <label for="name">name</label>
+        <input type="text" placeholder="name" id="jewel_name" name="name">
+    </p>
+
+    <p>
+        <label for="cost">cost</label>
+        <input type="number" placeholder="cost" id="jewel_cost" name="cost">
+    </p>
+
+    <p>
+        <label for="img">img</label>
+        <input type="image" placeholder="img" id="jewel_img" name="img">
+    </p>
+
+    <p>
+        <label for="category">category</label>
+        <input type="text" placeholder="category" id="jewel_category" name="category">
+    </p>
+
+    <p>
+        <label for="color">color</label>
+        <input type="color" placeholder="color" id="jewel_color" name="color">
+    </p>
+
+    <p>
+        <label for="branch">branch</label>
+        <input type="text" placeholder="branch" id="jewel_branch" name="branc">
+    </p>
+
+    <p><button onclick="add_jewelry()">add</button></p>
+
+
+</body>
+
+<script>
+    function add_jewelry() {
+        var name = document.getElementById("jewel_name").value;
+        var cost = document.getElementById("jewel_img").value;
+        var img = document.getElementById("jewel_img").value;
+        var category = document.getElementById("jewel_category").value;
+        var color = document.getElementById("jewel_color").value;
+        var branc = document.getElementById("jewel_branch").value;
+        fetch("/insertbranch", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name: name, cost: cost, img: img, category: category, color: color, branc: branc })
+        }).then(console.log)
+        return false
+    }
+
+</script>
+
+</body>
+
+</html>
