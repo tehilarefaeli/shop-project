@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        <label for="first_name">first name</label>
+        <input type="text" placeholder="first name" id="first_name" name="first_name">
+    </p>
+
+    <p>
+        <label for="last_name">lastname</label>
+        <input type="text" placeholder="last name" id="last_name" name="last_name">
+    </p>
+
+    <p>
+        <label for="email">email</label>
+        <input type="email" placeholder="email" id="email" name="email">
+    </p>
+
+    <p>
+        <label for="password">password</label>
+        <input type="password" placeholder="password" id="password" name="password">
+
+
+    <p><button onclick="add_manager()">add</button></p>
+
+
+</body>
+
+<script>
+    function add_manager() {
+        var first_name = document.getElementById("first_name").value;
+        var last_name = document.getElementById("last_name").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        fetch("/insertmanager", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ first_name: first_name, last_name: last_name, email: email, password: password })
+        }).then(console.log)
+        return false
+    }
+</script>
+
+</html>
