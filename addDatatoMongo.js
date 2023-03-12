@@ -6,7 +6,7 @@ http_server.use(express.json())
 http_server.use(express.static(__dirname))
 
 http_server.get('/', (req, res) => {
-    res.sendFile(__dirname + '/login.html')
+    res.sendFile(__dirname + '/shop.html')
 })
 
 http_server.get('/branches', async (req, res) => {

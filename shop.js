@@ -1,34 +1,5 @@
 
-const productdata = [
-    {
-        name: 'star ring', cost: '190',
-        img: 'https://pandorail.b-cdn.net/wp-content/uploads/2022/08/198492C01_1661157706469-270x270.png',
-        category: 'rings', color: 'silver'
-    },
-
-    {
-        name: 'Red heart ring', cost: '150',
-        img: 'https://pandorail.b-cdn.net/wp-content/uploads/2022/08/199267C01_1661238296938-270x270.png',
-        category: 'rings', color: 'red'
-    },
-
-    {
-        name: 'fabric bracelet', cost: '140',
-        img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/590749CPE_1661070689604-390x418.png.webp',
-        category: 'bracelet', color: 'purple'
-    },
-    {
-        name: 'Star earrings', cost: '285',
-        img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/10/262375C01_1666742512800-390x418.png.webp',
-        category: 'earring', color: 'gold'
-    },
-    {
-        name: 'Heart necklace', cost: '469',
-        img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/590534CZ-390x418.png.webp',
-        category: 'necklace', color: 'silver'
-    }
-
-];
+let productdata
 let productdatafilter;
 let inputValues = [];
 let filterproductbt3parameters;
@@ -113,13 +84,13 @@ function displayValues() {
 
 
 
-function loadProducts() {
+function loadProducts(productdata) {
     const data = productdatafilter || productdata
     checker = false
     cleardata = document.getElementById("divsOfProducts");
     cleardata.innerHTML = '';
-   
-    for (var i = 0; i < data.length; i++) {
+
+    for (var i = 0; i < data?.length; i++) {
         const card = document.createElement("div");
         card.classList.add("card");
         card.style.display = "inline-block"
@@ -144,7 +115,7 @@ function loadProducts() {
         card.appendChild(cardBody);
         document.getElementById("divsOfProducts").appendChild(card);
     }
-    
+
 }
 
 function get_branches() {
@@ -155,9 +126,41 @@ function get_branches() {
         })
         document.getElementById("branches").innerHTML = html;
     });
+} 
+async function get_Jewelry() {
+    fetch("/jewelry").then(res => res.json()).then(items => {
+        productdata = items
+       items.forEach(item =>{
+         const card = document.createElement("div");
+        card.classList.add("card");
+        card.style.display = "inline-block"
+        const cardImg = document.createElement("img");
+        cardImg.classList.add("card-img-top")
+        cardImg.setAttribute("src", item.img);
+        card.appendChild(cardImg);
+        const cardBody = document.createElement("div");
+        cardBody.classList.add("card-body");
+        const nameOfProduct = document.createElement("span");
+        nameOfProduct.classList.add("name-product");
+        nameOfProduct.innerHTML = item.name;
+        const cardText = document.createElement("p");
+        cardText.classList.add("card-text");
+        cardText.innerHTML =item.category + '   |   ' + item.color
+            + '   |   ' + item.cost + '   ILS';
+        cardBody.appendChild(nameOfProduct);
+        cardBody.appendChild(cardText);
+        // const cardIcon = document.createElement("i");
+        // cardIcon.classList.add("fa-solid", "fa-cart-shopping");
+        // card.appendChild(cardIcon);
+        card.appendChild(cardBody);
+        document.getElementById("divsOfProducts").appendChild(card);
+
+
+       })
+    })
+   
 }
 
-get_branches();
 
+get_Jewelry();
 get_branches();
-loadProducts();
