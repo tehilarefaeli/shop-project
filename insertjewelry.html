@@ -54,7 +54,7 @@
         var category = document.getElementById("jewel_category").value;
         var color = document.getElementById("jewel_color").value;
         var branc = document.getElementById("jewel_branch").value;
-        fetch("/insertbranch", {
+        fetch("/insertjewels", {
             method: "post",
             headers: {
                 "Content-Type": "application/json",

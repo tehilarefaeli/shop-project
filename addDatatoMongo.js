@@ -6,7 +6,7 @@ http_server.use(express.json())
 http_server.use(express.static(__dirname))
 
 http_server.get('/', (req, res) => {
-    res.sendFile(__dirname + '/shop.html')
+    res.sendFile(__dirname + '/login.html')
 })
 
 http_server.get('/branches', async (req, res) => {
@@ -20,6 +20,18 @@ http_server.get('/jewelry', async (req, res) => {
 
 http_server.post('/insertbranch', (req, res) => {
     add_branch_to_db(req.body)
+    res.end()
+})
+
+
+http_server.post('/insertjewels', (req, res) => {
+    add_jewelry_to_db(req.body)
+    res.end()
+})
+
+http_server.post('/insertmanager', (req, res) => {
+    add_manager_to_db(req.body)
+    res.end()
 })
 http_server.listen(8080)
 
@@ -143,6 +155,11 @@ function add_jewelry_to_db(data) {
 
 function add_branch_to_db(data) {
     const name = new branch({ city: data.city, street: data.street, phone: data.phone, opening_hours: data.opening_hours, email: data.email, branch: data.branch });
+    name.save()
+}
+
+function add_manager_to_db(data) {
+    const name = new manager({ first_name: data.first_name, last_name: data.last_name, email: data.email, password: data.password });
     name.save()
 }
 
