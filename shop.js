@@ -11,6 +11,7 @@ const productdata = [
         img: 'https://pandorail.b-cdn.net/wp-content/uploads/2022/08/199267C01_1661238296938-270x270.png',
         category: 'rings', color: 'red'
     },
+
     {
         name: 'fabric bracelet', cost: '140',
         img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/590749CPE_1661070689604-390x418.png.webp',
@@ -54,25 +55,14 @@ function displayInputs() {
         var productCategory = document.createElement("input");
         productCategory.type = "text";
         productCategory.placeholder = "Enter product category";
-        productCategory.required = true;
-        productCategory.classList.add("filtering");
-
-
 
         var productColor = document.createElement("input");
         productColor.type = "text";
         productColor.placeholder = "Enter product color";
-        productColor.required = true;
-        productColor.classList.add("filtering");
-
 
         var productPrice = document.createElement("input");
-        productPrice.type = "number";
+        productPrice.type = "text";
         productPrice.placeholder = "Enter product price";
-        productPrice.required = true;
-        productPrice.classList.add("filtering");
-
-
 
         // Add the input elements to the div
         inputDiv.appendChild(productCategory);
@@ -80,35 +70,29 @@ function displayInputs() {
         inputDiv.appendChild(productPrice);
 
         var button = document.createElement("button");
+
         button.classList.add("btn");
         button.innerText = "Get Input Values";
         button.onclick = function () {
-            if(productCategory.value && productColor.value && productPrice.value){
+            var inputValues = [
+                productCategory.value,
+                productColor.value,
+                productPrice.value
+            ];
+            console.log('asdfghjk', inputValues)
+            filterproductbt3parameters = productdata.filter(object => {
+                return (
+                    object.category == inputValues[0] &&
+                    object.color == inputValues[1] &&
+                    object.cost == inputValues[2]
+                )
+                // console.log("object",object);
 
-                var inputValues = [
-                    productCategory.value,
-                    productColor.value,
-                    productPrice.value
-                ];
-                console.log('asdfghjk', inputValues)
-                filterproductbt3parameters = productdata.filter(object => {
-                    return (
-                        object.category == inputValues[0] &&
-                        object.color == inputValues[1] &&
-                        object.cost == inputValues[2]
-                    )
-                    // console.log("object",object);
-    
-                })
-                productdatafilter=filterproductbt3parameters;
-                loadProducts()
-                console.log('filterproductbt3parameters', filterproductbt3parameters)
-    
-            }
-        else {
-            alert('please enter valid data')
-        }
-            
+            })
+            productdatafilter = filterproductbt3parameters;
+            loadProducts()
+            console.log('filterproductbt3parameters', filterproductbt3parameters)
+
         };
         inputDiv.appendChild(button);
     }
@@ -157,7 +141,7 @@ function loadProducts() {
         // const cardIcon = document.createElement("i");
         // cardIcon.classList.add("fa-solid", "fa-cart-shopping");
         // card.appendChild(cardIcon);
-         card.appendChild(cardBody);
+        card.appendChild(cardBody);
         document.getElementById("divsOfProducts").appendChild(card);
     }
     
@@ -167,11 +151,13 @@ function get_branches() {
     fetch("/branches").then(res => res.json()).then(branches => {
         let html = ""
         branches.forEach(branch => {
-            html += "<p> " + branch.city + "</br>" + branch.street + "</br>" + branch.phone + "</br>" + branch.opening_hours + "</br>" + branch.email + "</p>"
+            html += branch.city + "</br>" + branch.street + "</br>" + branch.phone + "</br>" + branch.opening_hours + "</br>" + branch.email
         })
         document.getElementById("branches").innerHTML = html;
     });
-
 }
+
+get_branches();
+
 get_branches();
 loadProducts();
