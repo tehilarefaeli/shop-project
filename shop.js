@@ -134,6 +134,7 @@ function loadProducts() {
     checker = false
     cleardata = document.getElementById("divsOfProducts");
     cleardata.innerHTML = '';
+   
     for (var i = 0; i < data.length; i++) {
         const card = document.createElement("div");
         card.classList.add("card");
@@ -159,6 +160,7 @@ function loadProducts() {
          card.appendChild(cardBody);
         document.getElementById("divsOfProducts").appendChild(card);
     }
+    
 }
 
 function get_branches() {

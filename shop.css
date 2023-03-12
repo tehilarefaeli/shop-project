@@ -8,7 +8,7 @@
 }
 
 #divsOfProducts {
-    background-color: aqua;
+    /* background-color: aqua; */
     width: calc(18rem*3.5);
     height: fit-content;
     margin-left: 15%;
@@ -22,7 +22,9 @@
 }
 .shop-name {
     text-align: center;
-    color:aquamarine
+    color:aquamarine;
+    text-shadow: 2px 2px grey;
+    transition: 0.3s
 }
 
 nav a {
