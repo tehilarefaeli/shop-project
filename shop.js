@@ -1,5 +1,4 @@
 
-
 const productdata = [
     {
         name: 'star ring', cost: '190',
@@ -71,6 +70,8 @@ function displayInputs() {
         inputDiv.appendChild(productPrice);
 
         var button = document.createElement("button");
+
+        button.classList.add("btn");
         button.innerText = "Get Input Values";
         button.onclick = function () {
             var inputValues = [
@@ -133,12 +134,12 @@ function loadProducts() {
         const cardText = document.createElement("p");
         cardText.classList.add("card-text");
         cardText.innerHTML = data[i].category + '   |   ' + data[i].color
-            + '   |   ' + data[i].cost + '   שח';
+            + '   |   ' + data[i].cost + '   ILS';
         cardBody.appendChild(nameOfProduct);
         cardBody.appendChild(cardText);
-        const cardIcon = document.createElement("i");
-        cardIcon.classList.add("fa-solid", "fa-cart-shopping");
-        card.appendChild(cardIcon);
+        // const cardIcon = document.createElement("i");
+        // cardIcon.classList.add("fa-solid", "fa-cart-shopping");
+        // card.appendChild(cardIcon);
         card.appendChild(cardBody);
         document.getElementById("divsOfProducts").appendChild(card);
     }
@@ -156,3 +157,5 @@ function get_branches() {
 
 get_branches();
 
+get_branches();
+loadProducts();
