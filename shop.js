@@ -12,6 +12,7 @@ const productdata = [
         img: 'https://pandorail.b-cdn.net/wp-content/uploads/2022/08/199267C01_1661238296938-270x270.png',
         category: 'rings', color: 'red'
     },
+
     {
         name: 'fabric bracelet', cost: '140',
         img: 'https://pandorail.b-cdn.net/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2022/08/590749CPE_1661070689604-390x418.png.webp',
