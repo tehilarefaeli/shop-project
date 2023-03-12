@@ -152,5 +152,6 @@ function get_branches() {
         document.getElementById("branches").innerHTML = html;
     });
 }
+
 get_branches();
 
