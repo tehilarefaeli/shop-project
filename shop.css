@@ -20,16 +20,22 @@
     size: 70px;
 
 }
+.shop-name {
+    text-align: center;
+    color:aquamarine
+}
 
 nav a {
     color: aqua;
     padding: 0 20px;
     text-decoration: none;
     text-align: center;
+    cursor: pointer;
 
 }
 .filtering{
     margin: 5px;
+    border-radius: 7px;
 
 }
 

@@ -13,6 +13,10 @@ http_server.get('/branches', async (req, res) => {
     res.send(await getbranches());
 })
 
+http_server.get('/products', async (req, res) => {
+    res.send(await getproducts());
+})
+
 http_server.post('/insertbranch', (req, res) => {
     add_branch_to_db(req.body)
 })
@@ -25,7 +29,6 @@ db.on('eroro', console.error.bind(console, 'connection error: '));
 db.once('open', function () {
     console.log('connection open');
 });
-
 
 const managers = new mongoose.Schema({
     first_name: String,
@@ -120,4 +123,8 @@ function add_branch_to_db(data) {
 
 async function getbranches() {
     return await branch.find();
+}
+
+async function getproducts() {
+    return await jewel.find();
 }
