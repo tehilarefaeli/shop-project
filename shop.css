@@ -8,7 +8,7 @@
 }
 
 #divsOfProducts {
-    background-color: aqua;
+    /* background-color: aqua; */
     width: calc(18rem*3.5);
     height: fit-content;
     margin-left: 15%;
@@ -20,12 +20,19 @@
     size: 70px;
 
 }
+.shop-name {
+    text-align: center;
+    color:aquamarine;
+    text-shadow: 2px 2px grey;
+    transition: 0.3s
+}
 
 nav a {
     color: aqua;
     padding: 0 20px;
     text-decoration: none;
     text-align: center;
+    cursor: pointer;
 
 }
 .admin{
@@ -38,9 +45,14 @@ nav a {
 }
 .filtering{
     margin: 5px;
+    border-radius: 7px;
 
 }
 
 nav a:hover {
     color: chocolate;
+}
+
+#branches{
+    column-count: 2;
 }
