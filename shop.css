@@ -12,6 +12,7 @@
     width: calc(18rem*3.5);
     height: fit-content;
     margin-left: 15%;
+    flex-grow: 8;
 }
 
 .container_menu {
@@ -43,7 +44,7 @@ nav a {
     border-radius: 10% 30% 50% 70%;
 
 }
-.filtering{
+.input_desplay{
     margin: 5px;
     border-radius: 7px;
 
@@ -53,6 +54,23 @@ nav a:hover {
     color: chocolate;
 }
 
-#branches{
-    column-count: 2;
+.branches_div{
+    display: flex;
 }
+
+.branches_div_children{
+    flex-grow: 4;
+}
+.footer{
+    background-color: aquamarine;
+}
+
+#droductdiv{
+    display: flex;
+    flex-direction: row;
+}
+#avg{
+    flex-grow: 2;
+    margin: 60px;
+}
+

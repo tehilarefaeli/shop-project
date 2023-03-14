@@ -26,14 +26,19 @@ function displayInputs() {
         var productCategory = document.createElement("input");
         productCategory.type = "text";
         productCategory.placeholder = "Enter product category";
+        productCategory.classList.add("input_desplay")
 
         var productColor = document.createElement("input");
         productColor.type = "text";
         productColor.placeholder = "Enter product color";
+        productColor.classList.add("input_desplay")
+
 
         var productPrice = document.createElement("input");
         productPrice.type = "text";
         productPrice.placeholder = "Enter product price";
+        productPrice.classList.add("input_desplay")
+
 
         // Add the input elements to the div
         inputDiv.appendChild(productCategory);
@@ -120,11 +125,21 @@ function loadProducts(productdata) {
 
 function get_branches() {
     fetch("/branches").then(res => res.json()).then(branches => {
-        let html = ""
+        const html = document.createElement("div")
+        html.classList.add("branches_div");
         branches.forEach(branch => {
-            html += branch.city + "</br>" + branch.street + "</br>" + branch.phone + "</br>" + branch.opening_hours + "</br>" + branch.email
+            const data= document.createElement("div");
+            data.classList.add("branches_div_children");
+
+            data.innerHTML = "</br>" + branch.city + '|' + branch.street + "</br>" + branch.phone + "|" + branch.opening_hours + "</br>" + branch.email;
+           
+            html.appendChild(data)
         })
-        document.getElementById("branches").innerHTML = html;
+       
+       
+        document.getElementById("branches").appendChild(html);
+      
+       
     });
 } 
 
@@ -132,11 +147,25 @@ function get_avarage(){
     fetch("./average").then(res => res.json()).then(avarage=>{
         let html = ""
         avarage.forEach(avg =>{
-            html += avg._id + '  ' + avg.averagePrice;
+            html += avg._id + ':   ' + avg.averagePrice +"<br/>";
         })
         document.getElementById("avg").innerHTML = html;
 
     })
+   // fetch("/average").then(res => res.json()).then(avarage=>{
+    //     const html1 = document.createElement("div");
+    //     html1.classList.add("avarage_div");
+    //     avarage.forEach(avg =>{
+    //         const data= document.createElement("div");
+    //         data.classList.add("avarage_div_children");
+    //         data.innerHTM = avg._id + ':    ' + avg.averagePrice + "<br/>";
+    //         html1.appendChild(data)
+
+    //     })
+    //     document.getElementById("avg").appendChild(html1);
+
+    // });
+
 }
 
 async function get_Jewelry() {
@@ -176,7 +205,8 @@ async function get_Jewelry() {
 
 get_Jewelry();
 get_branches();
-get_avarage();
+
+
 
 async function verify_DB() {
     const admin_email = document.querySelector('#admin-email').value;
