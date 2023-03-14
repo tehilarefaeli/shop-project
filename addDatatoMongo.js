@@ -17,6 +17,18 @@ http_server.get('/branches', async (req, res) => {
 http_server.get('/jewelry', async (req, res) => {
     res.send(await getjewels());
 })
+http_server.get('/average', async (req, res) => {
+    try {
+        const result = await jewel.aggregate([
+            { $group: { _id: "$category", averagePrice: { $avg: "$cost" } } }
+        ]);
+        res.send(result);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 
 http_server.post('/insertbranch', (req, res) => {
     add_branch_to_db(req.body)
@@ -33,6 +45,21 @@ http_server.post('/insertmanager', (req, res) => {
     add_manager_to_db(req.body)
     res.end()
 })
+
+http_server.get('/check-email', (req, res) => {
+    const admin_email = req.query.email;
+    const admin_password = req.query.password;
+    managers.find({ email: admin_email, password: admin_password }, (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error checking email');
+        } else if (result) {
+            res.json({ exists: true });
+        } else {
+            res.json({ exists: false });
+        }
+    });
+});
 http_server.listen(8080)
 
 mongoose.connect('mongodb://127.0.0.1:27017/shop', { useUnifiedTopology: true });
@@ -170,33 +197,22 @@ async function getjewels() {
     return await jewel.find();
 }
 
-http_server.get('/check-email', (req, res) => {
-    const admin_email = req.query.email;
-    const admin_password = req.query.password;
-    managers.find({ email:admin_email,password:admin_password}, (err, result) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send('Error checking email');
-      } else if (result) {
-        res.json({ exists: true });
-      } else {
-        res.json({ exists: false });
-      }
-    });
-  });
 
- /*router.get('/', async function(req, res)
+
+
+
+/*router.get('/', async function(req, res)
 {
-    const admin_email =await document.querySelector(adminUser).value;
-     const admin_password=await document.querySelector(adminPass).value;
+   const admin_email =await document.querySelector(adminUser).value;
+    const admin_password=await document.querySelector(adminPass).value;
 
 managers.find({ email:admin_email,password:admin_password}, (err, result) => {
-  if (err) 
-  {
-    console.error(err);
-  } 
-  else 
-  {
-    window.location.href = '/shop.html';
-  }
+ if (err) 
+ {
+   console.error(err);
+ } 
+ else 
+ {
+   window.location.href = '/shop.html';
+ }
 })}) */

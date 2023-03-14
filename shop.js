@@ -127,6 +127,18 @@ function get_branches() {
         document.getElementById("branches").innerHTML = html;
     });
 } 
+
+function get_avarage(){
+    fetch("./average").then(res => res.json()).then(avarage=>{
+        let html = ""
+        avarage.forEach(avg =>{
+            html += avg._id + '  ' + avg.averagePrice;
+        })
+        document.getElementById("avg").innerHTML = html;
+
+    })
+}
+
 async function get_Jewelry() {
     fetch("/jewelry").then(res => res.json()).then(items => {
         productdata = items
@@ -164,6 +176,7 @@ async function get_Jewelry() {
 
 get_Jewelry();
 get_branches();
+get_avarage();
 
 async function verify_DB() {
     const admin_email = document.querySelector('#admin-email').value;
