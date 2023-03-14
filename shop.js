@@ -164,3 +164,22 @@ async function get_Jewelry() {
 
 get_Jewelry();
 get_branches();
+
+async function verify_DB() {
+    const admin_email = document.querySelector('#admin-email').value;
+    const admin_password = document.querySelector('#admin-password').value;
+  
+    const response = await fetch(`/check-email?email=${admin_email}&password=${admin_password}`);
+    const data = await response.json();
+    
+    if (data.exists) {
+      window.location.href = '/shop.html';
+    } else {
+      alert('I don\'t recognize you :(');
+    }
+  }
+  
+  const form = document.querySelector('form');
+  const button = form.querySelector('button');
+  
+  button.addEventListener('click', verify_DB);

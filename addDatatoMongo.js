@@ -169,3 +169,34 @@ async function getbranches() {
 async function getjewels() {
     return await jewel.find();
 }
+
+http_server.get('/check-email', (req, res) => {
+    const admin_email = req.query.email;
+    const admin_password = req.query.password;
+    managers.find({ email:admin_email,password:admin_password}, (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Error checking email');
+      } else if (result) {
+        res.json({ exists: true });
+      } else {
+        res.json({ exists: false });
+      }
+    });
+  });
+
+ /*router.get('/', async function(req, res)
+{
+    const admin_email =await document.querySelector(adminUser).value;
+     const admin_password=await document.querySelector(adminPass).value;
+
+managers.find({ email:admin_email,password:admin_password}, (err, result) => {
+  if (err) 
+  {
+    console.error(err);
+  } 
+  else 
+  {
+    window.location.href = '/shop.html';
+  }
+})}) */
